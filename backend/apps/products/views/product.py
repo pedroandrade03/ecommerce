@@ -8,7 +8,7 @@ from apps.products import models, serializers
 
 class ProductViewSet(viewsets.ModelViewSet):
     '''View for manage ticket APIs.'''
-    serializer_class = serializers.BrandSerializer
+    serializer_class = serializers.ProductSerializer
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
-    queryset = models.Product.objects.all()
+    queryset = models.Product.objects.all().order_by('created_at')

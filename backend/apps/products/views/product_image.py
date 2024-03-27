@@ -8,7 +8,7 @@ from apps.products import models, serializers
 
 class ProductImageViewSet(viewsets.ModelViewSet):
     '''View for manage ticket APIs.'''
-    serializer_class = serializers.BrandSerializer
+    serializer_class = serializers.ProductImageSerializer
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
-    queryset = models.ProductImage.objects.all()
+    queryset = models.ProductImage.objects.all().order_by('created_at')

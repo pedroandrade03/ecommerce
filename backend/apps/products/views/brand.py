@@ -11,4 +11,4 @@ class BrandViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.BrandSerializer
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
-    queryset = models.Brand.objects.all()
+    queryset = models.Brand.objects.all().order_by('created_at')
