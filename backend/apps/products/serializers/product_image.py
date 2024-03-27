@@ -5,4 +5,4 @@ from apps.products import models
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ProductImage
-        fields = ('id', 'image', 'is_featured')
+        fields = ('id', 'image', 'caption', 'is_primary')

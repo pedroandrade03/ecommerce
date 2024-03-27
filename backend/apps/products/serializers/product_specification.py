@@ -5,5 +5,5 @@ from apps.products import models
 class ProductSpecificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ProductSpecification
-        fields = ('id',)
+        fields = ('id', 'tag', 'weight', 'dimensions')
         read_only_fields = ('id',)
