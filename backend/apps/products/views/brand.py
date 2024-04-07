@@ -1,12 +1,10 @@
-from rest_framework import (
-    viewsets,
-    mixins
-)
+from rest_framework import viewsets
 
 from apps.products import models, serializers
+from apps.core import views
 
 
-class BrandViewSet(viewsets.ModelViewSet):
+class BrandViewSet(views.BaseViewSet):
     '''View for manage ticket APIs.'''
     serializer_class = serializers.BrandSerializer
     # authentication_classes = (TokenAuthentication,)
