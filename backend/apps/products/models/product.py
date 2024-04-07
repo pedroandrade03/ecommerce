@@ -15,6 +15,7 @@ class Product(BaseModel):
     stock_quantity = models.IntegerField(
         verbose_name='Quantidade em estoque', default=0)
     is_active = models.BooleanField(default=True, verbose_name='Ativo')
+    is_popular = models.BooleanField(default=False, verbose_name='Popular')
     brand = models.ForeignKey(
         'Brand', on_delete=models.CASCADE, related_name='products', verbose_name='Marca')
     categories = models.ManyToManyField(
