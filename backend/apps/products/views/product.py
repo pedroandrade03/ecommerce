@@ -12,8 +12,18 @@ from apps.products import models, serializers
 class ProductViewSet(viewsets.ModelViewSet):
     '''View for manage ticket APIs.'''
     serializer_class = serializers.ProductSerializer
-    queryset = models.Product.objects.all().order_by('created_at')
+    queryset = models.Product.objects.all()
     ordering_fields = ['price', 'created_at', 'updated_at', 'name']
+
+    def get_ordered_queryset(self, queryset, request):
+        """
+        Order queryset based on query params
+        """
+        ordering = request.query_params.get('ordering', None)
+
+        if ordering and (ordering in self.ordering_fields or ordering.lstrip('-') in self.ordering_fields):
+            return queryset.order_by(ordering)
+        return queryset
 
     @extend_schema(operation_id='listProductsByCategory')
     @action(detail=False, methods=['get'], url_path=r'category/(?P<category_slug>[\w-]+)')
@@ -27,7 +37,8 @@ class ProductViewSet(viewsets.ModelViewSet):
             return response.Response({'message': 'Categoria não encontrada'}, status=status.HTTP_404_NOT_FOUND)
 
         products = self.queryset.filter(categories=category)
-        serializer = self.get_serializer(products, many=True)
+        ordered_products = self.get_ordered_queryset(products, request)
+        serializer = self.get_serializer(ordered_products, many=True)
         return response.Response(serializer.data)
 
     @extend_schema(operation_id='listProductsByBrand')
