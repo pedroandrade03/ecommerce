@@ -7,8 +7,9 @@ class Product(BaseModel):
     Model for products
     """
     name = models.CharField(max_length=255, verbose_name='Nome')
-    slug = models.SlugField(max_length=255, unique=True,
-                            verbose_name='Slug', help_text='Url amigável por exemplo pao-integral')
+    slug = models.SlugField(
+        max_length=255, unique=True,
+        verbose_name='Slug', help_text='Url amigável. Por exemplo: pao-integral')
     description = models.TextField(verbose_name='Descrição')
     price = models.DecimalField(
         max_digits=10, decimal_places=2, verbose_name='Preço')
@@ -22,6 +23,8 @@ class Product(BaseModel):
         "Category", blank=True, related_name='products', verbose_name='Categorias')
     expiration_at = models.DateField(
         blank=True, null=True, verbose_name='Data de validade')
+    review = models.PositiveSmallIntegerField(
+        max_digits=1, max_value=5, blank=True, null=True, verbose_name='Avaliação')
 
     def __str__(self):
         return self.name
