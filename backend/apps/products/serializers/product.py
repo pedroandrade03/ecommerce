@@ -8,6 +8,7 @@ class ProductSerializer(serializers.ModelSerializer):
     brand = product_serializers.BrandSerializer(read_only=True)
     specifications = serializers.SerializerMethodField(read_only=True)
     images = serializers.SerializerMethodField(read_only=True)
+    reviews = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = models.Product
