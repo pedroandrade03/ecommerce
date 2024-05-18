@@ -1,3 +1,4 @@
+import { ShoppingCartProvider } from "@/context/CartContext";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Inter as FontSans } from "next/font/google";
@@ -10,12 +11,14 @@ const fontSans = FontSans({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
+    <ShoppingCartProvider>
       <style jsx global>{`
         :root {
           --font-sans: ${fontSans.style.fontFamily};
         }
       `}</style>
      <Component {...pageProps} />
+    </ShoppingCartProvider>
     </>
   )
 }
