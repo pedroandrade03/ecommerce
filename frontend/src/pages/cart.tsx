@@ -211,15 +211,16 @@ export default function Cart() {
 
   return (
     <div className="flex flex-col justify-center">
-      <div>
-        <h1 className="font-semibold text-4xl">Seu carrinho</h1>
-        <div className="font-semibold mt-5">
-          <p className="text-gray-500 mb-12">
+      <NavBar />
+      <div className="mt-11 flex flex-col align-center justify-center px-8">
+        <div className="font-semibold">
+          <h1 className="text-3xl">Seu carrinho</h1>
+          <p className="text-gray-500 mb-12  mt-5">
             Há <span className="text-green-500">{quantityItens}</span>{" "}
             {quantityItens == 1 ? "item" : "items"} no seu carrinho
           </p>
         </div>
-        <div className="flex align-top gap-12 gap-y-6">
+        <div className="flex justify-between align-top gap-12">
           <div>
             <DataTable columns={columns} data={cartItems} />
           </div>
@@ -227,7 +228,7 @@ export default function Cart() {
             
             <div className="flex justify-between mb-7">
               <p className="text-gray-400 font-semibold">Total</p>
-              <p className="text-green-600 font-semibold text-2xl">
+              <p className="text-green-600 font-semibold text-xl">
                 {new Intl.NumberFormat("pt-BR", {
                   style: "currency",
                   currency: "BRL",
