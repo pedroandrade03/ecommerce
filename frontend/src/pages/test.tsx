@@ -1,9 +1,10 @@
-import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 
 export default function Test() {
   return (
-    <div className="flex h-screen">
-      <NavBar />
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-grow">{/* Conteúdo principal aqui */}</div>
+      <Footer />
     </div>
   );
 }
