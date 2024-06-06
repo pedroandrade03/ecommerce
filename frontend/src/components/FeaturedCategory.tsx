@@ -25,7 +25,7 @@ const mockCategories = [
 
 export default function FeaturedCategory() {
   return (
-    <div className="bg-gray-200 flex flex-col justify-center items-center p-16">
+    <div className="flex flex-col justify-center items-center p-16">
       <div className="w-full flex content-start my-4">
         <p className="text-4xl font-medium">Categorias em Destaque</p>
       </div>
