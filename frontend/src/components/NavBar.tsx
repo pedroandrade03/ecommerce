@@ -132,7 +132,7 @@ const vegan: { title: string; href: string }[] = [
 
 export default function NavBar() {
   return (
-    <header className="w-full px-32">
+    <header className="w-full px-8">
       <div className="flex items-center justify-between">
         <div className="relative h-[103px] w-[74px]">
           <Image src={"/logo.svg"} fill={true} alt="Picture of the author" />
@@ -163,7 +163,7 @@ export default function NavBar() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify- gap-2">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
