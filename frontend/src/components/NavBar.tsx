@@ -132,8 +132,8 @@ const vegan: { title: string; href: string }[] = [
 
 export default function NavBar() {
   return (
-    <header className="w-full px-8">
-      <div className="flex items-center justify-between">
+    <header className="w-full mb-12">
+      <div className="flex items-center justify-between border-b-2 mb-4">
         <div className="relative h-[103px] w-[74px]">
           <Image src={"/logo.svg"} fill={true} alt="Picture of the author" />
         </div>
