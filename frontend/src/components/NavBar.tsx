@@ -132,11 +132,14 @@ const vegan: { title: string; href: string }[] = [
 
 export default function NavBar() {
   return (
-    <header className="w-full mb-12">
-      <div className="flex items-center justify-between border-b-2 mb-4">
-        <div className="relative h-[103px] w-[74px]">
-          <Image src={"/logo.svg"} fill={true} alt="Picture of the author" />
-        </div>
+    <header className="flex flex-col items-center w-full px-4 lg:px-32 mb-4">
+      <div className="flex items-center justify-between border-b-2 py-2 w-full">
+        <Image
+          src={"/logo.svg"}
+          height={100}
+          width={100}
+          alt="Picture of the author"
+        />
         <div className="flex w-full max-w-xl items-center relative">
           <Input type="text" placeholder="Pesquisar por itens..." />
           <Button
@@ -163,7 +166,7 @@ export default function NavBar() {
           </div>
         </div>
       </div>
-      <div className="flex justify- gap-2">
+      <div className="flex gap-2 py-2">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
@@ -190,13 +193,6 @@ export default function NavBar() {
                     <IconFlame className="text-green-500" />
                     <p className="text-base font-semibold">Ofertas</p>
                   </div>
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <p className="text-base">Início</p>
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
@@ -284,13 +280,6 @@ export default function NavBar() {
               <Link href="/" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   <p className="text-base">Mercearia</p>
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <p className="text-base">Orientais</p>
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>

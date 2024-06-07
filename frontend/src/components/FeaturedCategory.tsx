@@ -25,7 +25,7 @@ const mockCategories = [
 
 export default function FeaturedCategory() {
   return (
-    <div className="flex flex-col justify-center items-center p-16">
+    <div className="flex flex-col justify-center items-center">
       <div className="w-full flex content-start my-4">
         <p className="text-4xl font-medium">Categorias em Destaque</p>
       </div>
@@ -37,7 +37,7 @@ export default function FeaturedCategory() {
       >
         <CarouselContent>
           {mockCategories.map((category, index) => (
-            <CarouselItem key={index} className="md:basis-1/4 lg:basis-1/10">
+            <CarouselItem key={index} className="md:basis-1/4 lg:basis-1/8">
               <CategoryCard
                 title={category.title}
                 itemCount={category.itemCount}
