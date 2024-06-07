@@ -1,12 +1,9 @@
-import FeaturedCategory from "@/components/FeaturedCategory";
-import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
 
 export default function Test() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="flex-grow">{/* Conteúdo principal aqui */}</div>
-      <FeaturedCategory />
-      <Footer />
+    <div className="container mx-auto px-4">
+      <Hero />
     </div>
   );
 }
