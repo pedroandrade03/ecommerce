@@ -30,10 +30,11 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="w-[350px]">
       <CardHeader className="gap-4 pb-4 flex items-center">
-        <div className="relative h-[240px] w-[240px]">
+        <div className="relative h-60 w-60">
           <Image
             src={mockedProduct.image}
             fill={true}
+            objectFit="contain"
             alt="Picture of the author"
           />
         </div>
