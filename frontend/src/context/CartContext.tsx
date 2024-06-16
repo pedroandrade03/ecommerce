@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 import { CartItem } from "@/types/CartItem";
 import { Product } from "@/types/Product";
 
@@ -22,36 +22,7 @@ export function useShoppingCart() {
 }
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: "1",
-      quantity: 2,
-      product: {
-        id: "1",
-        name: "Queijo ralado vegetal sabor cheddar",
-        images: ["/queijo.jpg"],
-        category: "Laticínios",
-        weight: 500,
-        price: 9.99,
-        rating: 4,
-        description: "description",
-      },
-    },
-    {
-      id: "2",
-      quantity: 1,
-      product: {
-        id: "2",
-        name: "Queijo ralado vegetal sabor cheddar",
-        images: ["/queijo.jpg"],
-        category: "Laticínios",
-        weight: 500,
-        price: 1.99,
-        rating: 2,
-        description: "description",
-      },
-    },
-  ]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   function getItemQuantity(id: string) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
@@ -103,6 +74,10 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       return [...currentItems, { id: Math.random(), product, quantity }];
     });
   }
+
+  useEffect(() => {
+    console.log(cartItems)
+  }, [cartItems])
 
   return (
     <ShoppingCartContext.Provider

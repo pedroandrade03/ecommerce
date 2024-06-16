@@ -10,13 +10,14 @@ import {
   IconBrandPinterest,
   IconBrandYoutube,
 } from "@tabler/icons-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer className="bg-gray-100 text-gray-700 px-4 lg:px-32 mt-4 py-12">
       <div className="flex flex-wrap justify-between">
         <div className="flex flex-col w-full md:w-1/2 mb-4 md:mb-0">
-        <h2 className="text-xl font-bold mb-2">Informações</h2>
+          <h2 className="text-xl font-bold mb-2">Informações</h2>
           <ul className="flex flex-col text-sm gap-1">
             <li className="mb-2 flex gap-1 items-center">
               <IconMapPin />
@@ -51,19 +52,19 @@ export default function Footer() {
           <h2 className="text-xl font-bold mb-2">Empresa</h2>
           <ul className="text-sm">
             <li className="mb-2">
-              <a href="#" className="hover:text-green-600">
+              <Link href="#" className="hover:text-green-600">
                 Quem somos
-              </a>
+              </Link>
             </li>
             <li className="mb-2">
-              <a href="#" className="hover:text-green-600">
+              <Link href="#" className="hover:text-green-600">
                 Política de privacidade
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-green-600">
+              <Link href="#" className="hover:text-green-600">
                 Termos e condições
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -72,14 +73,14 @@ export default function Footer() {
           <h2 className="text-xl font-bold mb-2">Conta</h2>
           <ul className="text-sm">
             <li className="mb-2">
-              <a href="#" className="hover:text-green-600">
+              <Link href="#" className="hover:text-green-600">
                 Entrar
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-green-600">
+              <Link href="#" className="hover:text-green-600">
                 Exibir carrinho
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -102,30 +103,30 @@ export default function Footer() {
         <div>
           <p>
             &copy; 2024,{" "}
-            <a href="#" className="text-green-600 hover:underline">
+            <Link href="#" className="text-green-600 hover:underline">
               Vêm da Terra Empório
-            </a>{" "}
+            </Link>{" "}
             - Todos os direitos reservados.
           </p>
         </div>
         <div className="flex items-center">
           <span className="mr-2">Redes Sociais: </span>
           <div className="flex items-center space-x-2">
-            <a href="#" className="hover:text-green-600">
+            <Link href="#" className="hover:text-green-600">
               <IconBrandFacebook />
-            </a>
-            <a href="#" className="hover:text-green-600">
+            </Link>
+            <Link href="#" className="hover:text-green-600">
               <IconBrandTwitter />
-            </a>
-            <a href="#" className="hover:text-green-600">
+            </Link>
+            <Link href="#" className="hover:text-green-600">
               <IconBrandInstagram />
-            </a>
-            <a href="#" className="hover:text-green-600">
+            </Link>
+            <Link href="#" className="hover:text-green-600">
               <IconBrandPinterest />
-            </a>
-            <a href="#" className="hover:text-green-600">
+            </Link>
+            <Link href="#" className="hover:text-green-600">
               <IconBrandYoutube />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

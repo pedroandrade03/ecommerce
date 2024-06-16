@@ -1,7 +1,10 @@
 export interface Product {
   id: string;
   name: string;
-  images: string[];
+  images: {
+    caption: string;
+    image: string;
+  }[];
   price: number;
   category: string;
   weight?: number;

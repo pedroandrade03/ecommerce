@@ -23,11 +23,11 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link href={`/produtos/${product.id}`}>
-      <Card className="w-[350px]">
+      <Card className="w-[260px]">
         <CardHeader className="gap-4 pb-4 flex items-center">
           <div className="relative h-60 w-60">
             <Image
-              src={product.images[0]}
+              src={product.images[0].image || "/logo.svg"}
               fill={true}
               objectFit="contain"
               alt="Picture of the author"
@@ -48,7 +48,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                 ({product.rating})
               </p>
             </div>
-            <p className="text-gray-500 text-xs">{product.weight} gramas</p>
           </div>
         </CardContent>
         <CardFooter className="flex justify-between">

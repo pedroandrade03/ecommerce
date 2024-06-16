@@ -9,51 +9,27 @@ import {
 import Image from "next/image";
 import { Button } from "./ui/button";
 import ProductCard from "./ProductCard";
-
-const mockProducts = [
-  {
-    id: "7",
-    name: "Queijo",
-    images: ["/queijo.jpg"],
-    description: "Queijo de Minas",
-    category: "Laticínios",
-    weight: 500,
-    price: 9.99,
-    rating: 4,
-  },
-  {
-    id: "8",
-    name: "Queijo",
-    images: ["/queijo.jpg"],
-    description: "Queijo de Minas",
-    category: "Laticínios",
-    weight: 500,
-    price: 9.99,
-    rating: 4,
-  },
-  {
-    id: "9",
-    name: "Queijo",
-    images: ["/queijo.jpg"],
-    description: "Queijo de Minas",
-    category: "Laticínios",
-    weight: 500,
-    price: 9.99,
-    rating: 4,
-  },
-  {
-    id: "10",
-    name: "Queijo",
-    images: ["/queijo.jpg"],
-    description: "Queijo de Minas",
-    category: "Laticínios",
-    weight: 500,
-    price: 9.99,
-    rating: 4,
-  },
-];
+import api from "@/api";
+import { useEffect, useState } from "react";
+import { Product } from "@/types/Product";
 
 export default function RecommendedProducts() {
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const getRecommendedProducts = async () => {
+      try {
+        const { data } = await api.get("/products/recommended");
+
+        setRecommendedProducts(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getRecommendedProducts();
+  }, []);
+
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex content-start my-4">
@@ -61,7 +37,7 @@ export default function RecommendedProducts() {
       </div>
 
       <div className="w-full flex gap-16">
-        <div className="rounded-3xl relative flex flex-col justify-between w-1/4 p-10">
+        <div className="rounded-3xl relative flex flex-col justify-between w-1/4 p-6">
           <p className="z-10 text-gray-800 font-bold text-4xl">
             Produtos recomendados para você
           </p>
@@ -83,8 +59,8 @@ export default function RecommendedProducts() {
             className=""
           >
             <CarouselContent>
-              {mockProducts.map((product, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+              {recommendedProducts.map((product, index) => (
+                <CarouselItem key={index} className="basis-1/3">
                   <ProductCard product={product} />
                 </CarouselItem>
               ))}

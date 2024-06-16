@@ -44,7 +44,7 @@ function DataTable<TData, TValue>({ data }: DataTableProps<TData, TValue>) {
           <div className="flex items-center">
             <div className="relative object-scale-down h-[90px] w-[70px]">
               <Image
-                src={product.images[0]}
+                src={product.images[0].image || "logo.svg"}
                 fill={true}
                 alt="Picture of the author"
               />
@@ -208,7 +208,7 @@ export default function Cart() {
           <div className="flex items-center">
             <div className="relative object-scale-down h-[90px] w-[70px]">
               <Image
-                src={product.images[0]}
+                src={product.images[0].image || "logo.svg"}
                 fill={true}
                 alt="Picture of the author"
               />

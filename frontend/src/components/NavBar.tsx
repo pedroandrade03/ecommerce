@@ -28,106 +28,31 @@ import { useShoppingCart } from "@/context/CartContext";
 const all_categories: { title: string; href: string }[] = [
   {
     title: "Cosméticos",
-    href: "/",
+    href: "/categorias/categoriaId",
   },
   {
     title: "Dietas Especiais",
-    href: "/",
+    href: "/categorias/categoriaId",
   },
   {
     title: "Ecológicos",
-    href: "/",
+    href: "/categorias/categoriaId",
   },
   {
     title: "Fitoterápicos",
-    href: "/",
+    href: "/categorias/categoriaId",
   },
   {
     title: "Mercearia",
-    href: "/",
+    href: "/categorias/categoriaId",
   },
   {
     title: "Orientais",
-    href: "/",
+    href: "/categorias/categoriaId",
   },
   {
     title: "Veganos",
-    href: "/",
-  },
-];
-
-const cosmetics: { title: string; href: string }[] = [
-  {
-    title: "Argilas",
-    href: "/",
-  },
-  {
-    title: "Hidratantes",
-    href: "/",
-  },
-  {
-    title: "Higiene",
-    href: "/",
-  },
-  {
-    title: "Higiene Bucal",
-    href: "/",
-  },
-];
-
-const special_diets: { title: string; href: string }[] = [
-  {
-    title: "Sem Açucar",
-    href: "/",
-  },
-  {
-    title: "Sem Glúten",
-    href: "/",
-  },
-  {
-    title: "Sem Lactose",
-    href: "/",
-  },
-];
-
-const ecological: { title: string; href: string }[] = [
-  {
-    title: "Diversos",
-    href: "/",
-  },
-  {
-    title: "Produtos de Limpeza",
-    href: "/",
-  },
-];
-
-const herbal_medicine: { title: string; href: string }[] = [
-  {
-    title: "Acessórios",
-    href: "/",
-  },
-  {
-    title: "Encapsulados",
-    href: "/",
-  },
-  {
-    title: "Hidrolatos",
-    href: "/",
-  },
-];
-
-const vegan: { title: string; href: string }[] = [
-  {
-    title: "Congelados",
-    href: "/",
-  },
-  {
-    title: "Refrigerados",
-    href: "/",
-  },
-  {
-    title: "Sorvetes",
-    href: "/",
+    href: "/categorias/categoriaId",
   },
 ];
 
@@ -189,128 +114,76 @@ export default function NavBar() {
                     <ListItem
                       key={all_categories.title}
                       title={all_categories.title}
-                      href={all_categories.href}
                     ></ListItem>
                   ))}
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
+              <Link
+                href="/categorias/10bccd70-a9f0-44ae-b359-5646e337701c"
+                legacyBehavior
+                passHref
+              >
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <div className="flex items-center">
-                    <IconFlame className="text-green-500" />
-                    <p className="text-base font-semibold">Ofertas</p>
-                  </div>
+                  Cosméticos
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-        <NavigationMenu>
-          <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-base">
-                Cosméticos
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="flex flex-col p-2 lg:w-[150px]">
-                  {cosmetics.map((cosmetics) => (
-                    <ListItem
-                      key={cosmetics.title}
-                      title={cosmetics.title}
-                      href={cosmetics.href}
-                    ></ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-base">
-                Dietas Especiais
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="flex flex-col p-4 lg:w-[150px]">
-                  {special_diets.map((special_diets) => (
-                    <ListItem
-                      key={special_diets.title}
-                      title={special_diets.title}
-                      href={special_diets.href}
-                    ></ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-base">
-                Ecológicos
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="flex flex-col p-4 lg:w-[150px]">
-                  {ecological.map((ecological) => (
-                    <ListItem
-                      key={ecological.title}
-                      title={ecological.title}
-                      href={ecological.href}
-                    ></ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-base">
-                Fitoterápicos
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="flex flex-col p-4 lg:w-[150px]">
-                  {herbal_medicine.map((herbal_medicine) => (
-                    <ListItem
-                      key={herbal_medicine.title}
-                      title={herbal_medicine.title}
-                      href={herbal_medicine.href}
-                    ></ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
+              <Link
+                href="/categorias/296380a5-787f-4113-988b-1e295dcaec62"
+                legacyBehavior
+                passHref
+              >
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <p className="text-base">Mercearia</p>
+                  Dietas Especiais
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-        <NavigationMenu>
-          <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-base">
-                Veganos
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="flex flex-col p-2 lg:w-[150px]">
-                  {vegan.map((vegan) => (
-                    <ListItem
-                      key={vegan.title}
-                      title={vegan.title}
-                      href={vegan.href}
-                    ></ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
+              <Link
+                href="/categorias/31e5ca52-4c1f-4320-8ea7-ddbf9ca10a2e"
+                legacyBehavior
+                passHref
+              >
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Ecológicos
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link
+                href="/categorias/357165e7-8d55-4e2b-82a3-c329214557ce"
+                legacyBehavior
+                passHref
+              >
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Fitoterápicos
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link
+                href="/categorias/3e4f2d7c-0224-466a-ab13-e0c5e086e94e"
+                legacyBehavior
+                passHref
+              >
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Mercearia
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link
+                href="/categorias/8027fd25-a0ba-4693-81fa-a0c2a5312791"
+                legacyBehavior
+                passHref
+              >
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Veganos
+                </NavigationMenuLink>
+              </Link>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
@@ -319,28 +192,13 @@ export default function NavBar() {
   );
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
+const ListItem = ({ title }: { title: string }) => {
   return (
     <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
+      <div className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+        <p className="text-sm font-medium leading-none">{title}</p>
+      </div>
     </li>
   );
-});
+};
 ListItem.displayName = "ListItem";
