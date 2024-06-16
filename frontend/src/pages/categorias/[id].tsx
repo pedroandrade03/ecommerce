@@ -15,13 +15,26 @@ import {
 export default function CategoryProducts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(8);
-  
+
+  const products = [
+    {
+      id: "1",
+      name: "Queijo",
+      image: "/queijo.jpg",
+      description: "Queijo de Minas",
+      category: "Laticínios",
+      weight: 500,
+      price: 9.99,
+      rating: 4,
+    },
+  ];
+
   return (
     <Layout>
       <div className="py-8 px-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">   
-          {[...Array(postsPerPage)].map((_, i) => (
-            <ProductCard />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {products.slice(postsPerPage).map((product, i) => (
+            <ProductCard key={i} product={product} />
           ))}
         </div>
       </div>
@@ -127,4 +140,3 @@ function PaginationSection({
     </div>
   );
 }
-

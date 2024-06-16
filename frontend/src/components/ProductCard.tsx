@@ -11,19 +11,10 @@ import { Product } from "@/types/Product";
 import Image from "next/image";
 import { IconStarFilled } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
-
-const mockedProduct = {
-  name: "Queijo",
-  image: "/queijo.jpg",
-  description: "Queijo de Minas",
-  category: "Laticínios",
-  weight: 500,
-  price: 9.99,
-  rating: 4,
-};
+import Link from "next/link";
 
 type ProductCardProps = {
-  product?: Product;
+  product: Product;
 };
 
 export default function ProductCard({ product }: ProductCardProps) {
@@ -32,7 +23,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <CardHeader className="gap-4 pb-4 flex items-center">
         <div className="relative h-60 w-60">
           <Image
-            src={mockedProduct.image}
+            src={product.image}
             fill={true}
             objectFit="contain"
             alt="Picture of the author"
@@ -42,27 +33,25 @@ export default function ProductCard({ product }: ProductCardProps) {
       <CardContent className="flex flex-col gap-2 pb-4">
         <div>
           <CardDescription className="text-gray-500 text-sm">
-            {mockedProduct.category}
+            {product.category}
           </CardDescription>
-          <CardTitle className="text-2xl pt-0">{mockedProduct.name}</CardTitle>
+          <CardTitle className="text-2xl pt-0">{product.name}</CardTitle>
         </div>
         <div className="flex flex-col gap-2">
           <div className="flex flex-row gap-1">
-            <StarRating rating={mockedProduct.rating} />
-            <p className="text-gray-500 text-xs mt-[1px]">
-              ({mockedProduct.rating})
-            </p>
+            <StarRating rating={product.rating} />
+            <p className="text-gray-500 text-xs mt-[1px]">({product.rating})</p>
           </div>
-          <p className="text-gray-500 text-xs">{mockedProduct.weight} gramas</p>
+          <p className="text-gray-500 text-xs">{product.weight} gramas</p>
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <p className="text-green-500 font-bold text-lg">
-          R${mockedProduct.price}
-        </p>
-        <Button className="bg-green-100">
-          <p className="text-green-700 font-bold">Adicionar +</p>
-        </Button>
+        <p className="text-green-500 font-bold text-lg">R${product.price}</p>
+        <Link href={`/produtos/${product.id}`}>
+          <Button className="bg-green-100">
+            <p className="text-green-700 font-bold">Adicionar +</p>
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );
