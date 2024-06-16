@@ -12,7 +12,10 @@ export default function Hero() {
         <h1 className="text-5xl font-bold text-gray-800 leading-tight">
           Não perca as ofertas em produtos veganos!
         </h1>
-        <p className="mt-4 text-lg text-gray-600">Incrível açougue vegano</p>
+        <p className="mt-4 text-lg text-gray-600">
+          Na Vem da Terra, acreditamos que viver bem começa com escolhas
+          conscientes.
+        </p>
         <div className="rounded-lg">
           <Button className="mt-6 bg-green-500 text-white px-8 py-4 shadow-md hover:bg-green-600 text-lg rounded-full">
             Comprar agora

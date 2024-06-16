@@ -1,4 +1,3 @@
-import { StyledBreadcrumb } from "@/components/StyledBreadcrumb";
 import { StarRating } from "@/components/ProductCard";
 import { useRouter } from "next/router";
 import { Badge } from "@/components/ui/badge";
@@ -47,7 +46,6 @@ export default function ProductDetail() {
   return (
     <Layout>
       <div className="flex flex-col">
-        <StyledBreadcrumb />
         <div className="flex flex-row justify-around items-start py-10">
           <div className="flex flex-col items-center justify-between">
             <Card className="p-6 mb-8">

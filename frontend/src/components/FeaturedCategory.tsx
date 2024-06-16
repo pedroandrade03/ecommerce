@@ -13,51 +13,6 @@ import { useEffect, useState } from "react";
 import api from "@/api";
 import { Category } from "@/types/Category";
 
-// const mockCategories = [
-//   {
-//     id: 1,
-//     title: "Cosméticos",
-//     itemCount: 2,
-//     backgroundColor: "bg-green-50",
-//     imageSrc: "/categories/cat-13.png",
-//   },
-//   {
-//     id: 1,
-//     title: "Dietas Especiais",
-//     itemCount: 1,
-//     backgroundColor: "bg-amber-50",
-//     imageSrc: "/categories/cat-12.png",
-//   },
-//   {
-//     id: 1,
-//     title: "Ecológicos",
-//     itemCount: 4,
-//     backgroundColor: "bg-yellow-50",
-//     imageSrc: "/categories/cat-11.png",
-//   },
-//   {
-//     id: 1,
-//     title: "Fitoterápicos",
-//     itemCount: 2,
-//     backgroundColor: "bg-red-50",
-//     imageSrc: "/categories/cat-9.png",
-//   },
-//   {
-//     id: 1,
-//     title: "Mercearia",
-//     itemCount: 3,
-//     backgroundColor: "bg-green-50",
-//     imageSrc: "/categories/cat-13.png",
-//   },
-//   {
-//     id: 1,
-//     title: "Veganos",
-//     itemCount: 6,
-//     backgroundColor: "bg-amber-50",
-//     imageSrc: "/categories/cat-12.png",
-//   },
-// ];
-
 export default function FeaturedCategory() {
   const [featuredCategories, setFeaturedCategories] = useState<Category[]>([]);
 
