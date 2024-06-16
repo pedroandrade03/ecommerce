@@ -1,5 +1,6 @@
 from django.db import models
 from apps.core.models import BaseModel
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Product(BaseModel):
@@ -23,8 +24,8 @@ class Product(BaseModel):
         "Category", blank=True, related_name='products', verbose_name='Categorias')
     expiration_at = models.DateField(
         blank=True, null=True, verbose_name='Data de validade')
-    review = models.PositiveSmallIntegerField(
-        max_digits=1, max_value=5, blank=True, null=True, verbose_name='Avaliação')
+    review = models.PositiveSmallIntegerField(blank=True, null=True, verbose_name='Avaliação', validators=[
+                                              MinValueValidator(1), MaxValueValidator(5)])
 
     def __str__(self):
         return self.name
