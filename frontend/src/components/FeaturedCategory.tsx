@@ -13,6 +13,14 @@ import { useEffect, useState } from "react";
 import api from "@/api";
 import { Category } from "@/types/Category";
 
+const colors = [
+  "bg-green-50",
+  "bg-yellow-50",
+  "bg-blue-50",
+  "bg-purple-50",
+  "bg-red-50",
+];
+
 export default function FeaturedCategory() {
   const [featuredCategories, setFeaturedCategories] = useState<Category[]>([]);
 
@@ -48,7 +56,7 @@ export default function FeaturedCategory() {
                 <CategoryCard
                   title={category.title}
                   itemCount={category.itemCount}
-                  backgroundColor={category.background_color}
+                  backgroundColor={colors[index % colors.length]}
                   imageSrc={category.image || "logo.svg"}
                   className="min-h-full flex flex-col"
                 />
