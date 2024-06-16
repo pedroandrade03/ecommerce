@@ -20,7 +20,7 @@ export default function CategoryProducts() {
     {
       id: "1",
       name: "Queijo",
-      image: "/queijo.jpg",
+      images: ["/queijo.jpg"],
       description: "Queijo de Minas",
       category: "Laticínios",
       weight: 500,

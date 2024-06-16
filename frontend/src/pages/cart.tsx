@@ -17,123 +17,123 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import { useShoppingCart } from "@/context/CartContext";
-import NavBar from "@/components/NavBar";
-
-export const columns: ColumnDef<CartItem>[] = [
-  {
-    accessorKey: "name",
-    header: () => <div className="text-center">Produtos</div>,
-    cell: ({ row }) => {
-      const product = row.original.product;
-      return (
-        <div className="flex items-center">
-          <div className="relative object-scale-down h-[90px] w-[70px]">
-            <Image
-              src={product.image}
-              fill={true}
-              alt="Picture of the author"
-            />
-          </div>
-          <p className="max-w-48 ml-5 font-medium">{product.name}</p>
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "price",
-    header: "Preço Unitário",
-    cell: ({ row }) => {
-      const product = row.original.product;
-      const price = product.price;
-      const formatted = new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(price);
-
-      return <div className="text-center">{formatted}</div>;
-    },
-  },
-  {
-    accessorKey: "quantity",
-    header: "Quantidade",
-    cell: ({ row }) => {
-      const { increaseQuantity, decreaseQuantity } = useShoppingCart();
-
-      const handleQuantityChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-      ) => {
-        const newQuantity = Number(event.target.value);
-
-        if (newQuantity > row.original.quantity) {
-          increaseQuantity(row.original.id);
-        } else if (newQuantity < row.original.quantity) {
-          decreaseQuantity(row.original.id);
-        }
-      };
-
-      return (
-        <div className="flex justify-center items-center">
-          <Input
-            type="number"
-            value={row.original.quantity}
-            onChange={handleQuantityChange}
-            className="font-medium text-center w-16"
-          />
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "subtotal",
-    header: "Subtotal",
-    cell: ({ row }) => {
-      const { getItemQuantity } = useShoppingCart();
-      const product = row.original.product;
-      const formatted = new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(product.price);
-
-      return (
-        <div className="flex justify-center">
-          <p>
-            {new Intl.NumberFormat("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            }).format(getItemQuantity(1) * product.price)}
-          </p>
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "remove",
-    header: "Remove",
-    cell: ({ row }) => {
-      const { removeFromCart } = useShoppingCart();
-      return (
-        <div className="flex justify-center">
-          <IconXboxX
-            onClick={() => removeFromCart(row.original.id)}
-            className="text-gray-400"
-          />
-        </div>
-      );
-    },
-  },
-];
+import Layout from "@/components/Layout";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-function DataTable<TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) {
+function DataTable<TData, TValue>({ data }: DataTableProps<TData, TValue>) {
+  const {
+    getItemQuantity,
+    increaseQuantity,
+    decreaseQuantity,
+    removeFromCart,
+  } = useShoppingCart();
+
+  const columns: ColumnDef<CartItem>[] = [
+    {
+      accessorKey: "name",
+      header: () => <div className="text-center">Produtos</div>,
+      cell: ({ row }) => {
+        const product = row.original.product;
+        return (
+          <div className="flex items-center">
+            <div className="relative object-scale-down h-[90px] w-[70px]">
+              <Image
+                src={product.images[0]}
+                fill={true}
+                alt="Picture of the author"
+              />
+            </div>
+            <p className="max-w-48 ml-5 font-medium">{product.name}</p>
+          </div>
+        );
+      },
+    },
+    {
+      accessorKey: "price",
+      header: "Preço Unitário",
+      cell: ({ row }) => {
+        const product = row.original.product;
+        const price = product.price;
+        const formatted = new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(price);
+
+        return <div className="text-center">{formatted}</div>;
+      },
+    },
+    {
+      accessorKey: "quantity",
+      header: "Quantidade",
+      cell: ({ row }) => {
+        const handleQuantityChange = (
+          event: React.ChangeEvent<HTMLInputElement>
+        ) => {
+          const newQuantity = Number(event.target.value);
+
+          if (newQuantity > row.original.quantity) {
+            increaseQuantity(row.original.id);
+          } else if (newQuantity < row.original.quantity) {
+            decreaseQuantity(row.original.id);
+          }
+        };
+
+        return (
+          <div className="flex justify-center items-center">
+            <Input
+              type="number"
+              value={row.original.quantity}
+              onChange={handleQuantityChange}
+              className="font-medium text-center w-16"
+            />
+          </div>
+        );
+      },
+    },
+    {
+      accessorKey: "subtotal",
+      header: "Subtotal",
+      cell: ({ row }) => {
+        const product = row.original.product;
+        const formatted = new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(product.price);
+
+        return (
+          <div className="flex justify-center">
+            <p>
+              {new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              }).format(getItemQuantity(row.original.id) * product.price)}
+            </p>
+          </div>
+        );
+      },
+    },
+    {
+      accessorKey: "remove",
+      header: "Remove",
+      cell: ({ row }) => {
+        return (
+          <div className="flex justify-center">
+            <IconXboxX
+              onClick={() => removeFromCart(row.original.id)}
+              className="text-gray-400"
+            />
+          </div>
+        );
+      },
+    },
+  ];
+
   const table = useReactTable({
     data,
     columns,
@@ -189,20 +189,126 @@ function DataTable<TData, TValue>({
 }
 
 export default function Cart() {
-  const { cartItems } = useShoppingCart();
+  const {
+    cartItems,
+    getItemQuantity,
+    increaseQuantity,
+    decreaseQuantity,
+    removeFromCart,
+  } = useShoppingCart();
   const [total, setTotal] = useState(0);
 
-  const calculateTotal = () => {
-    let totalPrice = 0;
-    cartItems.forEach((item) => {
-      const product = item.product;
-      const subtotal = product.price * item.quantity;
-      totalPrice += subtotal;
-    });
-    return totalPrice;
-  };
+  const columns: ColumnDef<CartItem>[] = [
+    {
+      accessorKey: "name",
+      header: () => <div className="text-center">Produtos</div>,
+      cell: ({ row }) => {
+        const product = row.original.product;
+        return (
+          <div className="flex items-center">
+            <div className="relative object-scale-down h-[90px] w-[70px]">
+              <Image
+                src={product.images[0]}
+                fill={true}
+                alt="Picture of the author"
+              />
+            </div>
+            <p className="max-w-48 ml-5 font-medium">{product.name}</p>
+          </div>
+        );
+      },
+    },
+    {
+      accessorKey: "price",
+      header: "Preço Unitário",
+      cell: ({ row }) => {
+        const product = row.original.product;
+        const price = product.price;
+        const formatted = new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(price);
+
+        return <div className="text-center">{formatted}</div>;
+      },
+    },
+    {
+      accessorKey: "quantity",
+      header: "Quantidade",
+      cell: ({ row }) => {
+        const handleQuantityChange = (
+          event: React.ChangeEvent<HTMLInputElement>
+        ) => {
+          const newQuantity = Number(event.target.value);
+
+          if (newQuantity > row.original.quantity) {
+            increaseQuantity(row.original.id);
+          } else if (newQuantity < row.original.quantity) {
+            decreaseQuantity(row.original.id);
+          }
+        };
+
+        return (
+          <div className="flex justify-center items-center">
+            <Input
+              type="number"
+              value={row.original.quantity}
+              onChange={handleQuantityChange}
+              className="font-medium text-center w-16"
+            />
+          </div>
+        );
+      },
+    },
+    {
+      accessorKey: "subtotal",
+      header: "Subtotal",
+      cell: ({ row }) => {
+        const product = row.original.product;
+        const formatted = new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(product.price);
+
+        return (
+          <div className="flex justify-center">
+            <p>
+              {new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              }).format(getItemQuantity(row.original.id) * product.price)}
+            </p>
+          </div>
+        );
+      },
+    },
+    {
+      accessorKey: "remove",
+      header: "Remove",
+      cell: ({ row }) => {
+        return (
+          <div className="flex justify-center">
+            <IconXboxX
+              onClick={() => removeFromCart(row.original.id)}
+              className="text-gray-400"
+            />
+          </div>
+        );
+      },
+    },
+  ];
 
   useEffect(() => {
+    const calculateTotal = () => {
+      let totalPrice = 0;
+      cartItems.forEach((item) => {
+        const product = item.product;
+        const subtotal = product.price * item.quantity;
+        totalPrice += subtotal;
+      });
+      return totalPrice;
+    };
+
     const totalPrice = calculateTotal();
     setTotal(totalPrice);
   }, [cartItems]);
@@ -210,8 +316,7 @@ export default function Cart() {
   const quantityItens = cartItems.length;
 
   return (
-    <div className="flex flex-col justify-center">
-      <NavBar />
+    <Layout>
       <div className="mt-11 flex flex-col align-center justify-center px-8">
         <div className="font-semibold">
           <h1 className="text-3xl">Seu carrinho</h1>
@@ -225,7 +330,6 @@ export default function Cart() {
             <DataTable columns={columns} data={cartItems} />
           </div>
           <div className="border w-[489px] h-[200px] rounded-2xl p-10">
-            
             <div className="flex justify-between mb-7">
               <p className="text-gray-400 font-semibold">Total</p>
               <p className="text-green-600 font-semibold text-xl">
@@ -244,6 +348,6 @@ export default function Cart() {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }

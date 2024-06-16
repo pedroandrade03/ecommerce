@@ -23,6 +23,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useShoppingCart } from "@/context/CartContext";
 
 const all_categories: { title: string; href: string }[] = [
   {
@@ -131,15 +132,19 @@ const vegan: { title: string; href: string }[] = [
 ];
 
 export default function NavBar() {
+  const { cartItems } = useShoppingCart();
+
   return (
     <header className="flex flex-col items-center w-full px-4 lg:px-32 mb-4">
       <div className="flex items-center justify-between border-b-2 py-2 w-full">
-        <Image
-          src={"/logo.svg"}
-          height={100}
-          width={100}
-          alt="Picture of the author"
-        />
+        <Link href="/">
+          <Image
+            src={"/logo.svg"}
+            height={100}
+            width={100}
+            alt="Picture of the author"
+          />
+        </Link>
         <div className="flex w-full max-w-xl items-center relative">
           <Input type="text" placeholder="Pesquisar por itens..." />
           <Button
@@ -154,16 +159,20 @@ export default function NavBar() {
             <IconUser />
             <p className="text-gray-500">Conta</p>
           </div>
-          <div className="flex items-center">
-            <div className="flex relative">
-              <IconShoppingCart />
-              <div className="absolute -right-2 -top-3 flex items-center justify-center">
-                <IconCircleFilled className="w-6 h-6 text-green-500 relative" />
-                <p className="text-sm text-center text-white absolute">4</p>
+          <Link href="/cart">
+            <div className="flex items-center">
+              <div className="flex relative">
+                <IconShoppingCart />
+                <div className="absolute -right-2 -top-3 flex items-center justify-center">
+                  <IconCircleFilled className="w-6 h-6 text-green-500 relative" />
+                  <p className="text-sm text-center text-white absolute">
+                    {cartItems.length}
+                  </p>
+                </div>
               </div>
+              <p className="text-gray-500">Carrinho</p>
             </div>
-            <p className="text-gray-500">Carrinho</p>
-          </div>
+          </Link>
         </div>
       </div>
       <div className="flex gap-2 py-2">
