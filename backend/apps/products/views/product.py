@@ -12,14 +12,30 @@ class ProductViewSet(views.BaseViewSet):
     queryset = models.Product.objects.all()
     ordering_fields = ['price', 'created_at', 'updated_at', 'name']
 
-    @extend_schema(operation_id='listProductsByCategory')
+    @extend_schema(operation_id='listProductsByCategorySlug')
     @action(detail=False, methods=['get'], url_path=r'category/(?P<category_slug>[\w-]+)')
-    def category(self, request, category_slug=None):
+    def category_by_slug(self, request, category_slug=None):
         """
-        Endpoint to get products by category
+        Endpoint to get products by category slug
         """
         try:
             category = models.Category.objects.get(slug=category_slug)
+        except models.Category.DoesNotExist:
+            return response.Response({'message': 'Categoria não encontrada'}, status=status.HTTP_404_NOT_FOUND)
+
+        products = self.queryset.filter(categories=category)
+        ordered_products = self.get_ordered_queryset(products, request)
+        serializer = self.get_serializer(ordered_products, many=True)
+        return response.Response(serializer.data)
+
+    @extend_schema(operation_id='listProductsByCategoryId')
+    @action(detail=False, methods=['get'], url_path=r'category/(?P<category_id>[\w-]+)')
+    def category_by_id(self, request, category_id=None):
+        """
+        Endpoint to get products by category id
+        """
+        try:
+            category = models.Category.objects.get(id=category_id)
         except models.Category.DoesNotExist:
             return response.Response({'message': 'Categoria não encontrada'}, status=status.HTTP_404_NOT_FOUND)
 
