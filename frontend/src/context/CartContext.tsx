@@ -1,5 +1,6 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 import { CartItem } from "@/types/CartItem";
+import { Product } from "@/types/Product";
 
 type ShoppingCartProviderProps = {
   children: ReactNode;
@@ -7,10 +8,11 @@ type ShoppingCartProviderProps = {
 
 type ShoppingCartContext = {
   cartItems: CartItem[];
-  getItemQuantity: (id: number) => number;
-  increaseQuantity: (id: number) => void;
-  decreaseQuantity: (id: number) => void;
-  removeFromCart: (id: number) => void;
+  getItemQuantity: (id: string) => number;
+  increaseQuantity: (id: string) => void;
+  decreaseQuantity: (id: string) => void;
+  removeFromCart: (id: string) => void;
+  addToCart: (product: Product, quantity: number) => void;
 };
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
@@ -20,38 +22,13 @@ export function useShoppingCart() {
 }
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: 1,
-      quantity: 2,
-      product: {
-        name: "Queijo ralado vegetal sabor cheddar",
-        image: "/queijo.jpg",
-        category: "Laticínios",
-        weight: 500,
-        price: 9.99,
-        rating: 4,
-      },
-    },
-    {
-      id: 2,
-      quantity: 1,
-      product: {
-        name: "Queijo ralado vegetal sabor cheddar",
-        image: "/queijo.jpg",
-        category: "Laticínios",
-        weight: 500,
-        price: 1.99,
-        rating: 2,
-      },
-    },
-  ]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  function getItemQuantity(id: number) {
+  function getItemQuantity(id: string) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   }
 
-  function increaseQuantity(id: number) {
+  function increaseQuantity(id: string) {
     setCartItems((currentItems) => {
       return currentItems.map((item) => {
         if (item.id === id) {
@@ -62,7 +39,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     });
   }
 
-  function decreaseQuantity(id: number) {
+  function decreaseQuantity(id: string) {
     setCartItems((currentItems) => {
       return currentItems.map((item) => {
         if (item.id === id && item.quantity > 0) {
@@ -73,11 +50,34 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     });
   }
 
-  function removeFromCart(id: number) {
+  function removeFromCart(id: string) {
     setCartItems((currentItems) => {
       return currentItems.filter((item) => item.id !== id);
     });
   }
+
+  function addToCart(product: Product, quantity: number) {
+    setCartItems((currentItems) => {
+      const existingItem = currentItems.find(
+        (item) => item.product.id === product.id
+      );
+
+      if (existingItem) {
+        return currentItems.map((item) => {
+          if (item.product.id === product.id) {
+            return { ...item, quantity: item.quantity + quantity };
+          }
+          return item;
+        });
+      }
+
+      return [...currentItems, { id: Math.random(), product, quantity }];
+    });
+  }
+
+  useEffect(() => {
+    console.log(cartItems)
+  }, [cartItems])
 
   return (
     <ShoppingCartContext.Provider
@@ -87,6 +87,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         increaseQuantity,
         decreaseQuantity,
         removeFromCart,
+        addToCart,
       }}
     >
       {children}

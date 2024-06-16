@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import Layout from "@/components/Layout";
@@ -11,36 +11,42 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Product } from "@/types/Product";
+import api from "@/api";
+import { useRouter } from "next/router";
+import ProductGrid from "@/components/ProductGrid";
 
 export default function CategoryProducts() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(8);
+  const router = useRouter();
 
-  const products = [
-    {
-      id: "1",
-      name: "Queijo",
-      image: "/queijo.jpg",
-      description: "Queijo de Minas",
-      category: "Laticínios",
-      weight: 500,
-      price: 9.99,
-      rating: 4,
-    },
-  ];
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(8);
+
+  const [categoryProducts, setCategoryProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const getCategoryProducts = async () => {
+      try {
+        const { data } = await api.get(`/products/category/${router.query.id}`);
+
+        setCategoryProducts(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getCategoryProducts();
+  }, [router]);
 
   return (
     <Layout>
-      <div className="py-8 px-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-          {products.slice(postsPerPage).map((product, i) => (
-            <ProductCard key={i} product={product} />
-          ))}
-        </div>
-      </div>
+      <ProductGrid
+        products={categoryProducts}
+        productsPerPage={productsPerPage}
+      />
       <PaginationSection
-        totalPosts={16}
-        postsPerPage={postsPerPage}
+        totalProducts={16}
+        productsPerPage={productsPerPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
@@ -49,18 +55,18 @@ export default function CategoryProducts() {
 }
 
 function PaginationSection({
-  totalPosts,
-  postsPerPage,
+  totalProducts,
+  productsPerPage,
   currentPage,
   setCurrentPage,
 }: {
-  totalPosts: any;
-  postsPerPage: any;
+  totalProducts: any;
+  productsPerPage: any;
   currentPage: any;
   setCurrentPage: any;
 }) {
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
     pageNumbers.push(i);
   }
 
