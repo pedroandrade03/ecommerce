@@ -7,3 +7,4 @@ export interface Product {
   weight?: number;
   rating: number;
 }
+
