@@ -13,7 +13,7 @@ class Category(BaseModel):
     parent = models.ForeignKey(
         'self', on_delete=models.CASCADE, null=True, blank=True, related_name='children', verbose_name='Categoria Pai')
     background_color = models.CharField(
-        max_length=7, blank=True, null=True, verbose_name='Cor de fundo', help_text='Cor Tailwind CSS')
+        max_length=50, blank=True, null=True, verbose_name='Cor de fundo', help_text='Cor Tailwind CSS')
 
     def __str__(self):
         return self.name
