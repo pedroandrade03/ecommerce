@@ -21,26 +21,30 @@ type ProductCardProps = {
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useShoppingCart();
 
+  console.log("imagem", product.images[0].image);
+
   return (
     <Link href={`/produtos/${product.id}`}>
-      <Card className="w-[260px]">
-        <CardHeader className="gap-4 pb-4 flex items-center">
-          <div className="relative h-60 w-60">
-            <Image
-              src={product.images[0].image || "/logo.svg"}
-              fill={true}
-              objectFit="contain"
-              alt="Picture of the author"
-            />
-          </div>
-        </CardHeader>
+      <Card className="w-[260px] h-[460px]">
+        <div className="h-[80%]">
+          <CardHeader className="gap-4 pb-4 flex items-center">
+            <div className="relative h-60 w-60">
+              <Image
+                src={product.images[0].image || "/logo.svg"}
+                fill={true}
+                objectFit="contain"
+                alt={product.images[0].caption || "Image"}
+              />
+            </div>
+            <div>
+              <CardDescription className="text-gray-500 text-sm">
+                {product.category}
+              </CardDescription>
+              <CardTitle className="text-2xl pt-0">{product.name}</CardTitle>
+            </div>
+          </CardHeader>
+        </div>
         <CardContent className="flex flex-col gap-2 pb-4">
-          <div>
-            <CardDescription className="text-gray-500 text-sm">
-              {product.category}
-            </CardDescription>
-            <CardTitle className="text-2xl pt-0">{product.name}</CardTitle>
-          </div>
           <div className="flex flex-col gap-2">
             <div className="flex flex-row gap-1">
               <StarRating rating={product.rating} />
