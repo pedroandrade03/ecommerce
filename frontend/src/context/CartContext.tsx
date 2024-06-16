@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { CartItem } from "@/types/CartItem";
 import { Product } from "@/types/Product";
 
@@ -74,10 +80,6 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       return [...currentItems, { id: Math.random(), product, quantity }];
     });
   }
-
-  useEffect(() => {
-    console.log(cartItems)
-  }, [cartItems])
 
   return (
     <ShoppingCartContext.Provider

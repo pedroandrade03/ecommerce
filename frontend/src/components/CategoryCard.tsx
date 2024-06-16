@@ -19,10 +19,6 @@ export function CategoryCard({
   imageSrc,
   className,
 }: CategoryCardProps) {
-  useEffect(() => {
-    console.log("cor", backgroundColor);
-  }, [backgroundColor]);
-
   return (
     <Card
       className={cn(

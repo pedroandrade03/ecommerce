@@ -19,8 +19,6 @@ export default function Home() {
         setIsLoadingGrid(true);
         const { data } = await api.get("/products");
 
-        console.log("resultados", data.results);
-
         setHomeProducts(data.results);
       } catch (error) {
         console.error(error);

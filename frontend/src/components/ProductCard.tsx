@@ -21,8 +21,6 @@ type ProductCardProps = {
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useShoppingCart();
 
-  console.log("imagem", product.images[0].image);
-
   return (
     <Link href={`/produtos/${product.id}`}>
       <Card className="w-[260px] h-[460px]">
