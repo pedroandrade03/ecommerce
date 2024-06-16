@@ -8,11 +8,12 @@ class ProductSerializer(serializers.ModelSerializer):
     brand = product_serializers.BrandSerializer(read_only=True)
     specifications = serializers.SerializerMethodField(read_only=True)
     images = serializers.SerializerMethodField(read_only=True)
+    rating = serializers.IntegerField(source='review')
 
     class Meta:
         model = models.Product
         fields = ('id', 'slug', 'name', 'description', 'price',
-                  'stock_quantity', 'is_active', 'brand', 'expiration_at', 'specifications', 'categories', 'images')
+                  'stock_quantity', 'is_active', 'brand', 'expiration_at', 'specifications', 'categories', 'images', 'rating')
         read_only_fields = ('id', 'slug', 'expiration_at',
                             'categories', 'specifications', 'images')
 
