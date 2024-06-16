@@ -24,10 +24,8 @@ class CategoryViewSet(views.BaseViewSet):
 
     @action(detail=False, methods=['get'], url_path='featured')
     def list_by_product_count(self, request):
-        """
-        List categories by product count.
-        """
-        categories = self.queryset
+        # Use get_queryset() ao invés de self.queryset diretamente
+        categories = self.get_queryset()
         categories_ordered = self.get_ordered_queryset(categories, request)
 
         serializer = self.get_serializer(categories_ordered, many=True)
