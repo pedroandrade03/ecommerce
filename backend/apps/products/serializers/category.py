@@ -3,11 +3,12 @@ from apps.products import models
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    product_count = serializers.SerializerMethodField()
+    itemCount = serializers.SerializerMethodField()
+    title = serializers.CharField(source='name')
 
     class Meta:
         model = models.Category
         fields = '__all__'
 
-    def get_product_count(self, obj):
+    def get_itemCount(self, obj):
         return obj.products.count()
