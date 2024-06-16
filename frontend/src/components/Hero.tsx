@@ -4,7 +4,7 @@ import {} from "@tabler/icons-react";
 
 export default function Hero() {
   return (
-    <div className="flex items-center justify-between bg-blue-100 rounded-lg p-10 shadow-lg max-w-screen-xl mx-auto my-10">
+    <div className="flex items-center justify-between bg-blue-100 rounded-lg p-10 shadow-lg max-w-screen-xl">
       <div className="flex flex-col">
         <div className="relative h-[100px] w-[100px] mb-4">
           <Image src="/logo.svg" fill={true} alt="Logo" />

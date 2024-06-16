@@ -1,20 +1,17 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import NavBar from "@/components/NavBar";
 import FeaturedCategory from "@/components/FeaturedCategory";
-import Footer from "@/components/Footer";
-import HomeSlider from "@/components/HomeSlider";
-
-const inter = Inter({ subsets: ["latin"] });
+import RecommendedProducts from "@/components/RecommendedProducts";
+import Hero from "@/components/Hero";
+import Layout from "@/components/Layout";
 
 export default function Home() {
   return (
-    <main className={`flex min-h-screen flex-col px-4 md:px-8 lg:px-36 ${inter.className}`}>
-      <NavBar />
-      <HomeSlider />
+    <Layout>
+      <div className="flex flex-col items-center gap-20">
+        <Hero />
         <FeaturedCategory />
-      <Footer />
-    </main>
+        <RecommendedProducts />
+      </div>
+    </Layout>
   );
 }
-
