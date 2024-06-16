@@ -44,6 +44,17 @@ class ProductViewSet(views.BaseViewSet):
         serializer = self.get_serializer(ordered_products, many=True)
         return response.Response(serializer.data)
 
+    @extend_schema(operation_id='listRecommendedProducts')
+    @action(detail=False, methods=['get'])
+    def recommended(self, request):
+        """
+        Endpoint to get recommended products
+        """
+        products = models.Product.objects.filter(is_popular=True)
+        ordered_products = self.get_ordered_queryset(products, request)
+        serializer = self.get_serializer(ordered_products, many=True)
+        return response.Response(serializer.data)
+
     @extend_schema(operation_id='listProductsByBrand')
     @action(detail=False, methods=['get'], url_path=r'brand/(?P<brand_slug>[\w-]+)')
     def brand(self, request, brand_slug=None):
