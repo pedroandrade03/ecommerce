@@ -1,37 +1,108 @@
-### 1. Criar e Ativar um Ambiente Virtual
+# Guia de Configuração do Projeto
 
-Crie um ambiente virtual para isolar as dependências do projeto:
+Este guia descreve como configurar e executar o projeto, incluindo tanto o backend (Django) quanto o frontend (Next.js).
 
-python -m venv venv
+## Pré-requisitos
 
-Ative o ambiente virtual:
+Certifique-se de ter o Python, Node.js e npm (ou yarn) instalados em seu sistema.
 
-- **Windows:**
-    .\venv\Scripts\activate
-- **macOS/Linux:**
-    source venv/bin/activate
+## Configuração do Backend
 
-### 2. Instalar as Dependências
+1. **Navegue até a pasta do backend:**
 
-Com o ambiente virtual ativado, instale as dependências necessárias:
+    ```sh
+    cd backend
+    ```
 
-pip install -r requirements.txt
+2. **Criar e Ativar um Ambiente Virtual**
 
-### 3. Configurar o Banco de Dados
+    Crie um ambiente virtual para isolar as dependências do projeto:
 
-Execute as migrações para configurar o banco de dados:
+    ```sh
+    python -m venv venv
+    ```
 
-python manage.py migrate
+    Ative o ambiente virtual:
 
-### 4. Criar um Superusuário
+    - **Windows:**
+        ```sh
+        .\venv\Scripts\activate
+        ```
+    - **macOS/Linux:**
+        ```sh
+        source venv/bin/activate
+        ```
 
-Crie um superusuário para acessar a interface administrativa do Django:
+3. **Instalar as Dependências**
 
-python manage.py createsuperuser
+    Com o ambiente virtual ativado, instale as dependências necessárias:
 
-### 5. Executar o Servidor de Desenvolvimento
+    ```sh
+    pip install -r requirements.txt
+    ```
 
-Inicie o servidor de desenvolvimento:
+4. **Configurar o Banco de Dados**
 
-python manage.py runserver
+    Execute as migrações para configurar o banco de dados:
 
+    ```sh
+    python manage.py migrate
+    ```
+
+5. **Criar um Superusuário**
+
+    Crie um superusuário para acessar a interface administrativa do Django:
+
+    ```sh
+    python manage.py createsuperuser
+    ```
+
+6. **Executar o Servidor de Desenvolvimento**
+
+    Inicie o servidor de desenvolvimento:
+
+    ```sh
+    python manage.py runserver
+    ```
+
+## Configuração do Frontend
+
+1. **Navegue até a pasta do frontend:**
+
+    ```sh
+    cd frontend
+    ```
+
+2. **Instalar as Dependências**
+
+    Instale as dependências necessárias:
+
+    ```sh
+    npm install
+    ```
+
+    ou, se você estiver usando yarn:
+
+    ```sh
+    yarn install
+    ```
+
+3. **Executar o Servidor de Desenvolvimento**
+
+    Inicie o servidor de desenvolvimento do Next.js:
+
+    ```sh
+    npm run dev
+    ```
+
+    ou, se você estiver usando yarn:
+
+    ```sh
+    yarn dev
+    ```
+
+## Executando o Projeto
+
+Agora, com ambos os servidores de desenvolvimento em execução, você pode acessar o frontend através do endereço fornecido pelo Next.js (normalmente `http://localhost:3000`) e o backend através do endereço fornecido pelo Django (normalmente `http://localhost:8000`).
+
+**Nota:** Certifique-se de que ambos os servidores estejam rodando simultaneamente para garantir a comunicação correta entre o frontend e o backend.
